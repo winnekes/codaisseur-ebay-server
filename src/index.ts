@@ -1,7 +1,7 @@
 // src/index.ts
 import 'reflect-metadata';
 import { createKoaServer } from 'routing-controllers';
-const cors = require('@koa/cors');
+import * as cors from '@koa/cors';
 
 import setupDb from './db';
 import AdvertisementController from './advertisements/controller';
