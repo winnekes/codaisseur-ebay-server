@@ -1,14 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { BaseEntity } from 'typeorm/repository/BaseEntity';
-import {
-    IsString,
-    Length,
-    MinLength,
-    IsInt,
-    IsUrl,
-    IsEmail,
-    IsPhoneNumber,
-} from 'class-validator';
+import { IsString, Length, MinLength, IsInt, IsUrl } from 'class-validator';
+import User from '../users/entity';
 
 @Entity()
 export default class Advertisement extends BaseEntity {
@@ -33,17 +26,9 @@ export default class Advertisement extends BaseEntity {
     @Column()
     imageUrl: string;
 
-    @IsEmail()
-    @Column()
-    email: string;
-
-    @IsPhoneNumber('NL')
-    @Column()
-    phone: string;
-
-    /*     @ManyToOne(
-        type => User,
-        user => user.photos
+    @ManyToOne(
+        () => User,
+        user => user.advertisements
     )
-    user: User; */
+    user: User;
 }
